@@ -1,0 +1,10 @@
+@tailwind base;
+
+body {
+	@apply bg-gray-900 text-green-500 font-semibold tracking-wider;
+	font-family: 'Open Sans', sans-serif;
+}
+
+@tailwind components;
+
+@tailwind utilities;
