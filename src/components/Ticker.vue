@@ -7,8 +7,8 @@
 		<div class="minutes tile">{{ minutes }}</div>
 		<div class="minutes-separator separator">:</div>
 		<div class="seconds tile">{{ seconds }}</div>
-		<div class="days-label label">DAYS</div>
-		<div class="hours-label label">HOURS</div>
+		<div class="days-label label mb-8">DAYS</div>
+		<div class="hours-label label mb-8">HOURS</div>
 		<div class="minutes-label label">MINUTES</div>
 		<div class="seconds-label label">SECONDS</div>
 	</time>
@@ -52,18 +52,31 @@ export default {
 .ticker {
 	@apply w-full;
 	display: grid;
-	grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
-	grid-template-rows: 1fr auto;
+
+	grid-template-columns: 1fr auto 1fr;
+	grid-template-rows: 1fr auto 1fr auto;
 	grid-template-areas:
-		'days days-separator hours hours-separator minutes minutes-separator seconds'
-		'days-label . hours-label . minutes-label . seconds-label';
+		'days days-separator hours'
+		'days-label . hours-label'
+		'minutes minutes-separator seconds'
+		'minutes-label . seconds-label';
+
+	@screen md {
+		grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+		grid-template-rows: 1fr auto;
+		grid-template-areas:
+			'days days-separator hours hours-separator minutes minutes-separator seconds'
+			'days-label . hours-label . minutes-label . seconds-label';
+	}
 }
 
 .tile {
-	@apply text-2xl font-bold border border-2 border-green-500 bg-gray-600 text-white rounded-lg w-16 h-16 flex justify-center items-center mx-auto;
+	align-self: center;
+	@apply text-3xl font-bold border border-2 border-malachite bg-dark text-white rounded-lg w-20 h-20 flex justify-center items-center mx-auto;
 }
 
 .separator {
+	align-self: center;
 	@apply flex justify-center items-center text-2xl font-bold;
 }
 
@@ -85,6 +98,10 @@ export default {
 
 .hours-separator {
 	grid-area: hours-separator;
+	@apply hidden;
+	@screen md {
+		@apply flex;
+	}
 }
 
 .minutes {
